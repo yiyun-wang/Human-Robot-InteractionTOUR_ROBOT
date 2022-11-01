@@ -64,7 +64,7 @@ class TourRobot(Node):
         """
         if(self.curr_state == self.state1):
             # Wait for Nav2
-            self.navigator.waituntilnav2active()
+            self.navigator.waitUntilNav2Active()
             
             # Set goal poses
             self.goal_pose = []
@@ -76,7 +76,7 @@ class TourRobot(Node):
             # Robot alerts user that it is apporaching user
 
             # Follow Waypoints
-            self.navigator.startfollowfwaypoints(self.goal_pose)
+            self.navigator.startFollowWaypoints(self.goal_pose)
             
             # Robot greets user and ask for their destination
             self.robot_talker(robot_phrase='Hello, my name is Turtlbot. I will escort you to your destination.')
@@ -104,7 +104,7 @@ class TourRobot(Node):
                           self.dest_positions['direction1'])
             
             # Follow Waypoints
-            self.navigator.startfollowfwaypoints(self.goal_pose)
+            self.navigator.startFollowWaypoints(self.goal_pose)
 
             # Robot alerts user that they reached destination
             self.robot_talker(robot_phrase='We have reached your destination. Have a good day.')
@@ -133,7 +133,7 @@ class TourRobot(Node):
                           self.dest_positions['direction2'])
 
             # Follow Waypoints
-            self.navigator.startfollowfwaypoints(self.goal_pose)
+            self.navigator.startFollowWaypoints(self.goal_pose)
 
             # Finished navigating to docking station
             self.navigator.dock()
@@ -280,12 +280,12 @@ def main():
     rclpy.init()
 
     # Set goal poses
-    user_position = {'x':-3.3, 'y':5.9, 'direction':TurtleBot4Directions.NORTH}
-    dest_position = {'x1':-1.0, 'y1':0.0, 'direction1':TurtleBot4Directions.NORTH,
-                     'x2':0.0, 'y2':0.0, 'direction2':TurtleBot4Directions.NORTH}
+    user_position = {'x':-6.14, 'y':-4.65, 'direction':TurtleBot4Directions.NORTH}
+    dest_position = {'x1':-5.25, 'y1':-5.75, 'direction1':TurtleBot4Directions.NORTH,
+                     'x2':-4.2, 'y2':-6.2, 'direction2':TurtleBot4Directions.NORTH}
 
     # Set expressive behavior for robot. Options include gesture, lightring, or both
-    robot_expression = 'both' # 'gesture', 'lightring', 'both'
+    robot_expression = 'gesture' # 'gesture', 'lightring', 'both'
 
     # Intiialize tour robot
     tour_robot = TourRobot(user_position, dest_position, robot_expression)
